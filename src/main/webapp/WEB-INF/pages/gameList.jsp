@@ -12,9 +12,12 @@
     <title>Title</title>
 </head>
 <body>
-    <h3>All player information</h3>
-    <c:forEach items="${list}" var="account">
-        ${account.player_name}
+    <h3>All game information</h3>
+    <c:forEach items="${list}" var="game">
+        ${game.id}
+        ${game.gameState}
+        ${game.word}
+        ${game.playerId}
     </c:forEach>
 </body>
 </html>

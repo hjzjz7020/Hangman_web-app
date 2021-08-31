@@ -22,14 +22,14 @@ public class AccountController {
     /**
      * find all accounts info and show.
      * @param model contains search result.
-     * @return forward to list.jsp
+     * @return forward to gameList.jsp
      */
     @RequestMapping("/findAll")
     public String findAll(Model model) {
         System.out.println("Representation layer: find all accounts.");
         List<Account> list = accountService.findAll();
         model.addAttribute("list", list);
-        return "list";
+        return "gameList";
     }
 
     /**

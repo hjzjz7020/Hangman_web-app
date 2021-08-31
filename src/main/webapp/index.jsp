@@ -22,5 +22,8 @@
         <input type="submit" value="Save"><br/>
     </form>
 
+    <a href="game/newGame">Start Hangman</a><br/>
+    <a href="management/">Management Page</a><br/>
+
 </body>
 </html>
