@@ -16,6 +16,10 @@ public interface GameDao {
     String[] loadWordList();
 
     // save new game.
-    @Insert("insert into game (state, word, playerID) values (0, #{word}, #{playerId})")
+    @Insert("insert into game (ID, state, word, playerID) values (#{id}, 0, #{word}, #{playerId})")
     void saveNewGame(Game newGame);
+
+    // find game by id.
+    @Select("select * from game where ID=#{id}")
+    Game getGame(String id);
 }

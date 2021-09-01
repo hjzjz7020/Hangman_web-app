@@ -65,4 +65,10 @@ public class GameServiceImpl implements GameService {
         gameDao.saveNewGame(newGame);
     }
 
+    // find game by id.
+    public Game getGame(String id) {
+        System.out.println("Business layer: get game by id.");
+        return gameDao.getGame(id);
+    }
+
 }

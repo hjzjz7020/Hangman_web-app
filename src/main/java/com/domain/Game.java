@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Game implements Serializable {
 
-    private int id;
+    private String id;
     private String word;
     private GameState gameState;
     private int playerId;
@@ -19,7 +19,7 @@ public class Game implements Serializable {
      * @param word target word.
      * @param playerId ID of current player.
      */
-    public Game(int id, int state, String word, int playerId) {
+    public Game(String id, int state, String word, int playerId) {
         this.id = id;
         this.word = word;
         this.playerId = playerId;
@@ -37,7 +37,8 @@ public class Game implements Serializable {
      * @param word target word.
      * @param playerId ID of current player.
      */
-    public Game(String word, int playerId) {
+    public Game(String id, String word, int playerId) {
+        this.id = id;
         this.word = word;
         this.playerId = playerId;
         this.remainingGuesses = 10;
@@ -46,7 +47,7 @@ public class Game implements Serializable {
         this.gameState = GameState.ACTIVE;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

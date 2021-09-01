@@ -21,4 +21,7 @@ public interface GameService {
 
     // Save new game into database.
     void saveNewGame(Game newGame);
+
+    // find game by id.
+    Game getGame(String id);
 }
