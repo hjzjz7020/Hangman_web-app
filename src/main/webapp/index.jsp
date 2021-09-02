@@ -23,19 +23,25 @@
 
 		<p>
 			<a id="newGameButton" class="btn btn-primary btn-lg">Start A New Game</a>
-			<span id="stats"></span>
 		</p>
+		<form action="management/">
+			<input type="submit" value="Management page" />
+		</form>
 	</section>
 
 	<section id="gamePanel" class="panel panel-default hidden">
 		<div class="panel-body">
-			<span id="caption">You have {10} tries. Guess this {7} letter word:</span> 
+			<span id="caption">You have {10} tries</span>
 			<div id="currentGuess">G__GLE</div>
 			
 			<div class="inputWrapper">
 				<input id="letterInput" type="text" placeholder="Enter your letter here"/>
 				<a id="guessButton" class="btn btn-primary">Guess</a>
 			</div>
+		</div>
+
+		<div>
+			<p id="message"></p>
 		</div>
 
 	</section>
