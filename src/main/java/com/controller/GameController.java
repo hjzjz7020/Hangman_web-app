@@ -69,7 +69,7 @@ public class GameController {
 
         Game game = gameService.getGame(id);
 
-        if (game.getGameState()) {
+        if (game.getGameState() == 0) {
             // In case the player type more than one character, take the first one
             String singleLetter = String.valueOf(letter.charAt(0));
 

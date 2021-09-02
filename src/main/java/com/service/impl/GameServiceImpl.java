@@ -2,7 +2,6 @@ package com.service.impl;
 
 import com.dao.GameDao;
 import com.domain.Game;
-import com.domain.GameState;
 import com.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +20,9 @@ public class GameServiceImpl implements GameService {
     // update game state.
     public void updateState(Game game) {
         if (game.getWord().equals(game.getCurrentGuess())) {
-            game.setGameState(GameState.WON);
+            game.setGameState(1);
         } else if (game.getRemainingGuesses() <= 0) {
-            game.setGameState(GameState.LOST);
+            game.setGameState(-1);
         }
 
         gameDao.updateGame(game);

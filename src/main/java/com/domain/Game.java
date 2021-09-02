@@ -6,7 +6,7 @@ public class Game implements Serializable {
 
     private String id;
     private String word;
-    private GameState gameState;
+    private int gameState; // 1 - WON; 0 - ACTIVE; -1 - LOST.
     private int letterCount;
     private int remainingGuesses;
     private String currentGuess;
@@ -23,13 +23,7 @@ public class Game implements Serializable {
         this.remainingGuesses = 10;
         this.currentGuess = word.replaceAll(".", "_");
         this.letterCount = word.length();
-        if (state == 1) {
-            this.gameState = GameState.WON;
-        } else if (state == 0) {
-            this.gameState = GameState.ACTIVE;
-        } else {
-            this.gameState = GameState.LOST;
-        }
+        this.gameState = state;
     }
 
     /**
@@ -42,7 +36,7 @@ public class Game implements Serializable {
         this.remainingGuesses = 10;
         this.currentGuess = word.replaceAll(".", "_");
         this.letterCount = word.length();
-        this.gameState = GameState.ACTIVE;
+        this.gameState = 0;
     }
 
     /**
@@ -52,13 +46,7 @@ public class Game implements Serializable {
     public Game(String id, String word, int state, int remainingGuesses, String currentGuess) {
         this.id = id;
         this.word = word;
-        if (state == 1) {
-            this.gameState = GameState.WON;
-        } else if (state == 0) {
-            this.gameState = GameState.ACTIVE;
-        } else {
-            this.gameState = GameState.LOST;
-        }
+        this.gameState = state;
         this.remainingGuesses = remainingGuesses;
         this.currentGuess = currentGuess.replaceAll("_", "_");
     }
@@ -87,11 +75,11 @@ public class Game implements Serializable {
         this.remainingGuesses = remainingGuesses;
     }
 
-    public boolean getGameState() {
-        return gameState == GameState.ACTIVE;
+    public int getGameState() {
+        return gameState;
     }
 
-    public void setGameState(GameState gameState) {
+    public void setGameState(int gameState) {
         this.gameState = gameState;
     }
 

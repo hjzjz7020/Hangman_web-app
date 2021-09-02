@@ -47,11 +47,11 @@ $(function() {
 	}
 	
 	function checkGameState(currentGame, game) {
-		if (game.state === 'WON') {
+		if (game.state === 1) {
 			message.text('You won!');
 			gamesWon++;
 			gamesPlayed++;
-		} else if (game.state === 'LOST') {
+		} else if (game.state === -1) {
 			message.text('You lost!');
 			gamesPlayed++;
 		} else if (game.remainingGuesses === currentGame.remainingGuesses) {
