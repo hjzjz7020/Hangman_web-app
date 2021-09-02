@@ -7,7 +7,7 @@ These three layers are integrated by the Spring framework.
 In the representation layer, this web-app uses Spring MVC framework to achieve the Model-View-Controller architecture, processing user requests.
 The business layer performs the detailed game logic, including update the current game based on user input.
 The persistent layer is responsible for data persistence. 
-This web-app uses MyBatis framework.
+This web-app uses MyBatis framework in the persistent layer.
 
 
 *The following sections gives the instruction to run this web-app.*
@@ -57,4 +57,5 @@ Future work mainly consists of two part:
    However, I do not have a clear blueprint of this function yet.
 2. The same player should only encounter a word once.
    One approach is using session information to distinguish different users.
-   Considering the previous problem, a alternative way is using the user account to achieve this.
+   Considering the previous problem, an alternative way is using the user account to achieve this.
+3. There should be unit test to cover all functions in controller and service.

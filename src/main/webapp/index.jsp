@@ -24,15 +24,16 @@
 		<p>
 			<a id="newGameButton" class="btn btn-primary btn-lg">Start A New Game</a>
 		</p>
-		<div class="col-xs-3">
-			<label for="gameIdInputBox">Game ID:
-			</label><input type="text" class="form-control" id="gameIdInputBox">
-			<a id="resumeGameButton" class="btn btn-primary btn-lg">Resume A Game</a>
-		</div>
-		<form action="management">
-			<input type="submit" value="Management page" />
-		</form>
 	</section>
+
+	<div class="col-xs-3">
+		<label for="gameIdInputBox">Game ID:
+		</label><input type="text" class="form-control" id="gameIdInputBox">
+		<a id="resumeGameButton" class="btn btn-primary btn-lg">Resume A Game</a>
+	</div>
+	<form action="management">
+		<input type="submit" value="Management page" />
+	</form>
 
 	<section id="gamePanel" class="panel panel-default hidden">
 		<div class="panel-body">
@@ -46,10 +47,7 @@
 		</div>
 
 		<div>
-			<h3>Current game id: </h3><p id="gameID"></p>
-		</div>
-
-		<div>
+			<h5>Current game id: </h5><p id="gameID"></p><br>
 			<p id="message"></p>
 		</div>
 

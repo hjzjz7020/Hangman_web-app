@@ -25,7 +25,7 @@
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
         <property name="jdbcUrl" value="jdbc:mysql:///Hangman"/>
         <property name="user" value="root"/>
-        <property name="password" value="940606zjz"/>
+        <property name="password" value="root"/>
     </bean>
 
     <!-- config SqlSessionFactory -->

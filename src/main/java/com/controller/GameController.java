@@ -41,7 +41,7 @@ public class GameController {
      * Resume a game using game ID.
      */
     @RequestMapping(value = "/{id}", method=RequestMethod.POST)
-    public @ResponseBody Game makeGuess(@PathVariable String id) {
+    public @ResponseBody Game resumeGame(@PathVariable String id) {
         return gameService.select(id);
     }
 

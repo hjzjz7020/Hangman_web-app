@@ -36,7 +36,7 @@ public class GameServiceImpl implements GameService {
         // get all target word
         String[] wordList = gameWordService.loadWordList();
 
-        Game newGame = new Game(wordList[(new Random(System.nanoTime()).nextInt(wordList.length))]);
+        Game newGame = new Game(wordList[randomIndex(wordList)]);
         insert(newGame);
 
         return newGame;
@@ -46,6 +46,11 @@ public class GameServiceImpl implements GameService {
     public Game select(String id) {
         System.out.println("Business layer: get game by id.");
         return gameDao.select(id);
+    }
+
+    // generate a random word list index.
+    private int randomIndex(String[] wordList) {
+        return new Random(System.nanoTime()).nextInt(wordList.length);
     }
 
 }
