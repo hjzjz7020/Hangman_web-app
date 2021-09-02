@@ -7,7 +7,6 @@ public class Game implements Serializable {
     private String id;
     private String word;
     private GameState gameState;
-    private int playerId;
     private int letterCount;
     private int remainingGuesses;
     private String currentGuess;
@@ -17,12 +16,13 @@ public class Game implements Serializable {
      * @param id game id.
      * @param state game state.
      * @param word target word.
-     * @param playerId ID of current player.
      */
-    public Game(String id, int state, String word, int playerId) {
+    public Game(String id, int state, String word) {
         this.id = id;
         this.word = word;
-        this.playerId = playerId;
+        this.remainingGuesses = 10;
+        this.currentGuess = word.replaceAll(".", "_");
+        this.letterCount = word.length();
         if (state == 1) {
             this.gameState = GameState.WON;
         } else if (state == 0) {
@@ -35,16 +35,32 @@ public class Game implements Serializable {
     /**
      * Constructor method.
      * @param word target word.
-     * @param playerId ID of current player.
      */
-    public Game(String id, String word, int playerId) {
+    public Game(String id, String word) {
         this.id = id;
         this.word = word;
-        this.playerId = playerId;
         this.remainingGuesses = 10;
         this.currentGuess = word.replaceAll(".", "_");
         this.letterCount = word.length();
         this.gameState = GameState.ACTIVE;
+    }
+
+    /**
+     * Constructor method.
+     * @param word target word.
+     */
+    public Game(String id, String word, int state, int remainingGuesses, String currentGuess) {
+        this.id = id;
+        this.word = word;
+        if (state == 1) {
+            this.gameState = GameState.WON;
+        } else if (state == 0) {
+            this.gameState = GameState.ACTIVE;
+        } else {
+            this.gameState = GameState.LOST;
+        }
+        this.remainingGuesses = remainingGuesses;
+        this.currentGuess = currentGuess.replaceAll("_", "_");
     }
 
     public String getId() {
@@ -87,11 +103,4 @@ public class Game implements Serializable {
         this.currentGuess = currentGuess;
     }
 
-    public int getPlayerId() {
-        return playerId;
-    }
-
-    public void setPlayerId(int playerId) {
-        this.playerId = playerId;
-    }
 }

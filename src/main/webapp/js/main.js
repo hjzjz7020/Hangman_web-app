@@ -47,11 +47,11 @@ $(function() {
 	}
 	
 	function checkGameState(currentGame, game) {
-		if (game.state === 1) {
+		if (game.state === 'WON') {
 			message.text('You won!');
 			gamesWon++;
 			gamesPlayed++;
-		} else if (game.state === -1) {
+		} else if (game.state === 'LOST') {
 			message.text('You lost!');
 			gamesPlayed++;
 		} else if (game.remainingGuesses === currentGame.remainingGuesses) {
@@ -64,7 +64,6 @@ $(function() {
 	function renderGame(game) {
 		caption.text(evalTempl("You have {remainingGuesses} tries. Guess this {letterCount} letter word: ", game));
 		currentGuess.text(game.currentGuess);
-		hangmanImage.attr('src', evalTempl('resources/img/{imageIndex}.png', {imageIndex: 10-game.remainingGuesses})); 
 	}
 	
 	function renderStats() {

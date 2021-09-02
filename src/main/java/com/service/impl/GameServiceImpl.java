@@ -25,9 +25,11 @@ public class GameServiceImpl implements GameService {
         } else if (game.getRemainingGuesses() <= 0) {
             game.setGameState(GameState.LOST);
         }
+
+        gameDao.updateGame(game);
     }
 
-    // Keep track of the where the guessed letters fit into the word
+    // Keep track of where the guessed letters fit into the word
     public void updateCurrentGuess(Game game, String letter) {
         StringBuffer buffer = new StringBuffer(game.getCurrentGuess());
         String targetWord = game.getWord();

@@ -1,6 +1,5 @@
 package com.controller;
 
-import com.domain.Account;
 import com.domain.Game;
 import com.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,17 +45,17 @@ public class GameController {
     @RequestMapping(value="/game", method= RequestMethod.POST)
     public @ResponseBody Game createGame(HttpSession session) {
 
-        // TODO: using an fake account
-        Account player = new Account();
-        player.setId(10);
-        player.setPlayer_name("fake_player");
-        player.setPassword("fake_password");
-        player.setManagement_status(true);
+//        // TODO: using an fake account
+//        Account player = new Account();
+//        player.setId(10);
+//        player.setPlayer_name("fake_player");
+//        player.setPassword("fake_password");
+//        player.setManagement_status(true);
 
         // get all target word
         String[] wordList = gameService.loadWordList();
 
-        Game newGame = new Game(UUID.randomUUID().toString(), wordList[(new Random(System.nanoTime()).nextInt(wordList.length))], player.getId());
+        Game newGame = new Game(UUID.randomUUID().toString(), wordList[(new Random(System.nanoTime()).nextInt(wordList.length))]);
         gameService.saveNewGame(newGame);
         return newGame;
     }
