@@ -24,7 +24,7 @@
 		<p>
 			<a id="newGameButton" class="btn btn-primary btn-lg">Start A New Game</a>
 		</p>
-		<form action="management/">
+		<form action="management">
 			<input type="submit" value="Management page" />
 		</form>
 	</section>

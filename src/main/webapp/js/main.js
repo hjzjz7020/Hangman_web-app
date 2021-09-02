@@ -1,8 +1,5 @@
 $(function() {
 	
-	// NOTE: This is a quick and dirty UI for the backend. In normal situations, 
-	// there would be separation between the game controller, the view, and the game model.
-	
 	var newGameButton = $('#newGameButton'),
 		guessButton = $('#guessButton'),
 		letterInputBox = $('#letterInput'),
@@ -11,15 +8,13 @@ $(function() {
 		gamePanel = $('#gamePanel'),
 		message = $('#message'),
 		currentGame = {};
-		// gamesPlayed = 0,
-		// gamesWon = 0;
 	
 	newGameButton.click(createNewGame);
 	guessButton.click(makeGuess);
 	
 	function createNewGame () {
 		$.ajax({
-			url : "game",
+			url : "game/",
 			type: 'POST'
 		}).done(function (game) {
 			currentGame = game;
@@ -43,10 +38,10 @@ $(function() {
 	}
 	
 	function checkGameState(currentGame, game) {
-		if (game.gameState === 1) {
-			message.text('You won!');
-		} else if (game.gameState === -1) {
-			message.text('You lost!');
+		if (game.gameState === "WON") {
+			message.text('You win!');
+		} else if (game.gameState === "LOST") {
+			message.text('You lose!');
 		} else {
 			message.text('Keep going!');
 		}

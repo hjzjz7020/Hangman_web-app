@@ -12,12 +12,8 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface GameDao {
 
-    // Find all words.
-    @Select("SELECT word FROM word")
-    String[] loadWordList();
-
     // save new game.
-    @Insert("INSERT INTO game (ID, word, state, remainingGuesses, currentGuess) VALUES (#{id}, #{word}, 0, 10, #{currentGuess})")
+    @Insert("INSERT INTO game (ID, word, state, remainingGuesses, currentGuess) VALUES (#{id}, #{word}, 'ACTIVE', 10, #{currentGuess})")
     void saveNewGame(Game game);
 
     // find game by id.

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
+@RequestMapping("/management")
 public class ManagementController {
 
     @Autowired
@@ -20,7 +21,7 @@ public class ManagementController {
      * @param model contains search result.
      * @return forward to gameList.jsp
      */
-    @RequestMapping("/management")
+    @RequestMapping("")
     public String findAll(Model model) {
         System.out.println("Representation layer: find all games.");
         List<Game> list = managementService.findAll();

@@ -50,3 +50,11 @@ Next, you can use Maven to build this web-app and deploy it on a Tomcat server.
 
 ## Future Work
 
+Future work mainly consists of two part:
+
+1. Ideally there should be authorization and authentication steps since this web-app contains management functionalities.
+   I left some account related code that supposed to take responsibility of these steps.
+   However, I do not have a clear blueprint of this function yet.
+2. The same player should only encounter a word once.
+   One approach is using session information to distinguish different users.
+   Considering the previous problem, a alternative way is using the user account to achieve this.

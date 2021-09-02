@@ -7,8 +7,7 @@ public class Game implements Serializable {
 
     private final String id;
     private String word;
-    private GameState gameState; // 1 - WON; 0 - ACTIVE; -1 - LOST.
-    private int letterCount;
+    private GameState gameState;
     private int remainingGuesses;
     private String currentGuess;
 
@@ -18,19 +17,12 @@ public class Game implements Serializable {
      * @param state game state.
      * @param word target word.
      */
-    public Game(String id, int state, String word) {
+    public Game(String id, GameState state, String word) {
         this.id = id;
         this.word = word;
         this.remainingGuesses = 10;
         this.currentGuess = word.replaceAll(".", "_");
-        this.letterCount = word.length();
-        if (state == 1) {
-            this.gameState = GameState.WON;
-        } else if (state == 0) {
-            this.gameState = GameState.ACTIVE;
-        } else {
-            this.gameState = GameState.LOST;
-        }
+        this.gameState = state;
     }
 
     /**
@@ -42,7 +34,6 @@ public class Game implements Serializable {
         this.word = word;
         this.remainingGuesses = 10;
         this.currentGuess = word.replaceAll(".", "_");
-        this.letterCount = word.length();
         this.gameState = GameState.ACTIVE;
     }
 
@@ -50,26 +41,16 @@ public class Game implements Serializable {
      * Constructor method.
      * @param word target word.
      */
-    public Game(String id, String word, int state, int remainingGuesses, String currentGuess) {
+    public Game(String id, String word, String state, int remainingGuesses, String currentGuess) {
         this.id = id;
         this.word = word;
-        if (state == 1) {
-            this.gameState = GameState.WON;
-        } else if (state == 0) {
-            this.gameState = GameState.ACTIVE;
-        } else {
-            this.gameState = GameState.LOST;
-        }
+        this.gameState = GameState.valueOf(state);
         this.remainingGuesses = remainingGuesses;
         this.currentGuess = currentGuess.replaceAll("_", "_");
     }
 
     public String getId() {
         return id;
-    }
-
-    public int getLetterCount() {
-        return letterCount;
     }
 
     public String getWord() {
@@ -88,14 +69,8 @@ public class Game implements Serializable {
         this.remainingGuesses = remainingGuesses;
     }
 
-    public int getGameState() {
-        if (gameState == GameState.ACTIVE) {
-            return 0;
-        } else if(gameState == GameState.WON) {
-            return 1;
-        } else {
-            return -1;
-        }
+    public GameState getGameState() {
+        return gameState;
     }
 
     public void setGameState(GameState gameState) {
@@ -121,6 +96,30 @@ public class Game implements Serializable {
             this.setGameState(GameState.WON);
         } else if (this.getRemainingGuesses() <= 0) {
             this.setGameState(GameState.LOST);
+        }
+    }
+
+    // Keep track of where the guessed letters fit into the word
+    private void updateCurrentGuess(String letter) {
+        StringBuilder buffer = new StringBuilder(this.getCurrentGuess());
+        String targetWord = this.getWord();
+        char character = letter.toCharArray()[0];
+        int index = targetWord.indexOf(letter);
+
+        while (index >= 0) {
+            buffer.setCharAt(index, character);
+            index = targetWord.indexOf(character, index + 1);
+        }
+
+        this.setCurrentGuess(buffer.toString());
+    }
+
+    // A guess is correct when the letter exists and hasn't already been played.
+    public void makeGuess(String letter) {
+        if (this.getWord().contains(letter) && !this.getCurrentGuess().contains(letter)) {
+            updateCurrentGuess(letter);
+        } else {
+            this.reduceRemainingGuesses();
         }
     }
 }
