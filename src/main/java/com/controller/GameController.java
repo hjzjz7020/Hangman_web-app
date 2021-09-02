@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;
-import java.util.UUID;
 
 @Controller
 public class GameController {
@@ -21,7 +20,7 @@ public class GameController {
         // get all target word
         String[] wordList = gameService.loadWordList();
 
-        Game newGame = new Game(UUID.randomUUID().toString(), wordList[(new Random(System.nanoTime()).nextInt(wordList.length))]);
+        Game newGame = new Game(wordList[(new Random(System.nanoTime()).nextInt(wordList.length))]);
         gameService.saveNewGame(newGame);
         return newGame;
     }

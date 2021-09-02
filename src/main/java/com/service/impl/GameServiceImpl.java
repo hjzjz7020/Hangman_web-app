@@ -12,25 +12,9 @@ public class GameServiceImpl implements GameService {
     @Autowired
     private GameDao gameDao;
 
-    // reduce the number of remaining guesses by 1.
-    public void reduceRemainingGuesses(Game game) {
-        game.setRemainingGuesses(game.getRemainingGuesses()-1);
-    }
-
-    // update game state.
-    public void updateState(Game game) {
-        if (game.getWord().equals(game.getCurrentGuess())) {
-            game.setGameState(1);
-        } else if (game.getRemainingGuesses() <= 0) {
-            game.setGameState(-1);
-        }
-
-        gameDao.updateGame(game);
-    }
-
     // Keep track of where the guessed letters fit into the word
-    public void updateCurrentGuess(Game game, String letter) {
-        StringBuffer buffer = new StringBuffer(game.getCurrentGuess());
+    private void updateCurrentGuess(Game game, String letter) {
+        StringBuilder buffer = new StringBuilder(game.getCurrentGuess());
         String targetWord = game.getWord();
         char character = letter.toCharArray()[0];
         int index = targetWord.indexOf(letter);
@@ -48,11 +32,13 @@ public class GameServiceImpl implements GameService {
         if (game.getWord().contains(letter) && !game.getCurrentGuess().contains(letter)) {
             updateCurrentGuess(game, letter);
         } else {
-            reduceRemainingGuesses(game);
+            game.reduceRemainingGuesses();
         }
 
         // Always keep the state uo to date after a guess
-        updateState(game);
+        game.updateState();
+
+        gameDao.updateGame(game);
     }
 
     // Load all target words.
