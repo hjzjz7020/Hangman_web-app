@@ -24,6 +24,11 @@
 		<p>
 			<a id="newGameButton" class="btn btn-primary btn-lg">Start A New Game</a>
 		</p>
+		<div class="col-xs-3">
+			<label for="gameIdInputBox">Game ID:
+			</label><input type="text" class="form-control" id="gameIdInputBox">
+			<a id="resumeGameButton" class="btn btn-primary btn-lg">Resume A Game</a>
+		</div>
 		<form action="management">
 			<input type="submit" value="Management page" />
 		</form>
@@ -38,6 +43,10 @@
 				<input id="letterInput" type="text" placeholder="Enter your letter here"/>
 				<a id="guessButton" class="btn btn-primary">Guess</a>
 			</div>
+		</div>
+
+		<div>
+			<h3>Current game id: </h3><p id="gameID"></p>
 		</div>
 
 		<div>

@@ -1,15 +1,19 @@
 $(function() {
 	
 	var newGameButton = $('#newGameButton'),
+		resumeGameButton = $('#resumeGameButton'),
 		guessButton = $('#guessButton'),
+		gameIdInputBox = $('#gameIdInputBox'),
 		letterInputBox = $('#letterInput'),
 		caption = $('#caption'),
 		currentGuess = $('#currentGuess'),
 		gamePanel = $('#gamePanel'),
 		message = $('#message'),
+		gameID = $('#gameID'),
 		currentGame = {};
 	
 	newGameButton.click(createNewGame);
+	resumeGameButton.click(resumeGame);
 	guessButton.click(makeGuess);
 	
 	function createNewGame () {
@@ -21,7 +25,21 @@ $(function() {
 			renderGame(game);
 			gamePanel.removeClass('hidden');
 			message.text('');
+			gameID.text(game.id);
 		});		
+	}
+
+	function resumeGame () {
+		$.ajax({
+			url : evalTempl('game/{id}', {id: gameIdInputBox.val()}),
+			type: 'POST'
+		}).done(function (game) {
+			currentGame = game;
+			renderGame(game);
+			gamePanel.removeClass('hidden');
+			message.text('');
+			gameID.text(game.id);
+		});
 	}
 	
 	function makeGuess() {
@@ -34,6 +52,7 @@ $(function() {
 			currentGame = game;
 			letterInputBox.focus();
 			letterInputBox.val('');
+			gameID.text(game.id);
 		});
 	}
 	

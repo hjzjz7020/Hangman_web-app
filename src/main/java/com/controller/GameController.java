@@ -28,13 +28,21 @@ public class GameController {
 
         Game game = gameService.select(id);
 
-        if (game.getGameState() == GameState.ACTIVE) {
+        if (game.getGameState() == GameState.ACTIVE && !letter.isEmpty()) {
             // In case the player type more than one character, take the first one
             String singleLetter = String.valueOf(letter.charAt(0));
 
             gameService.update(game, singleLetter);
         }
         return game;
+    }
+
+    /**
+     * Resume a game using game ID.
+     */
+    @RequestMapping(value = "/{id}", method=RequestMethod.POST)
+    public @ResponseBody Game makeGuess(@PathVariable String id) {
+        return gameService.select(id);
     }
 
 }
