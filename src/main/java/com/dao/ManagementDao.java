@@ -13,7 +13,7 @@ import java.util.List;
 public interface ManagementDao {
 
     // Find all games.
-    @Select("select * from game")
+    @Select("SELECT * from game WHERE state='ACTIVE'")
     List<Game> findAll();
 
 }
