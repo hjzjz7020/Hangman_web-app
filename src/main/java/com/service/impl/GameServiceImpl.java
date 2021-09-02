@@ -17,18 +17,18 @@ public class GameServiceImpl implements GameService {
     @Autowired
     private GameWordService gameWordService;
 
-    public void updateGame(Game game, String letter) {
+    public void update(Game game, String letter) {
 
         game.makeGuess(letter);
         game.updateState();
 
-        gameDao.updateGame(game);
+        gameDao.update(game);
     }
 
     // Save new game into database.
-    public void saveNewGame(Game newGame) {
+    public void insert(Game newGame) {
         System.out.println("Business layer: save game info.");
-        gameDao.saveNewGame(newGame);
+        gameDao.insert(newGame);
     }
 
     // Creat a new game using a random word.
@@ -37,15 +37,15 @@ public class GameServiceImpl implements GameService {
         String[] wordList = gameWordService.loadWordList();
 
         Game newGame = new Game(wordList[(new Random(System.nanoTime()).nextInt(wordList.length))]);
-        saveNewGame(newGame);
+        insert(newGame);
 
         return newGame;
     }
 
     // find game by id.
-    public Game getGame(String id) {
+    public Game select(String id) {
         System.out.println("Business layer: get game by id.");
-        return gameDao.getGame(id);
+        return gameDao.select(id);
     }
 
 }

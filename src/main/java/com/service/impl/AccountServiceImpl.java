@@ -21,8 +21,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     // Save account info.
-    public void saveAccount(Account player) {
+    public void insert(Account player) {
         System.out.println("Business layer: save player info.");
-        accountDao.saveAccount(player);
+        accountDao.insert(player);
     }
 }

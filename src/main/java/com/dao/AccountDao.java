@@ -19,6 +19,6 @@ public interface AccountDao {
 
     // save new account.
     @Insert("insert into account (player_name, password, management_status) values (#{player_name}, #{password}, #{management_status})")
-    public void saveAccount(Account account);
+    public void insert(Account account);
 
 }

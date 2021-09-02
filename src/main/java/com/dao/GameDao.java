@@ -14,13 +14,13 @@ public interface GameDao {
 
     // save new game.
     @Insert("INSERT INTO game (ID, word, state, remainingGuesses, currentGuess) VALUES (#{id}, #{word}, 'ACTIVE', 10, #{currentGuess})")
-    void saveNewGame(Game game);
+    void insert(Game game);
 
     // find game by id.
     @Select("SELECT * FROM game WHERE ID=#{id}")
-    Game getGame(String id);
+    Game select(String id);
 
     // update a game.
     @Update("UPDATE game SET state=#{gameState}, remainingGuesses=#{remainingGuesses}, currentGuess=#{currentGuess} WHERE ID=#{id}")
-    void updateGame(Game game);
+    void update(Game game);
 }

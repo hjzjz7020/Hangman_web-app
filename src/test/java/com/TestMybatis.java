@@ -61,7 +61,7 @@ public class TestMybatis {
         player.setManagement_status(false);
 
         // save player.
-        dao.saveAccount(player);
+        dao.insert(player);
         // commit transaction
         session.commit();
     }

@@ -44,7 +44,7 @@
         <c:forEach items="${list}" var="game">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">ID</th>
             <th scope="col">State</th>
             <th scope="col">Word</th>
             <th scope="col">Remaining Chances</th>

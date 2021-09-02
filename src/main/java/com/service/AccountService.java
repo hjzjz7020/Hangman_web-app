@@ -7,8 +7,8 @@ import java.util.List;
 public interface AccountService {
 
     // find all accounts.
-    public List<Account> findAll();
+    List<Account> findAll();
 
     // save new account.
-    public void saveAccount(Account account);
+    void insert(Account account);
 }

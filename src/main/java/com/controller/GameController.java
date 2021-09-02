@@ -26,13 +26,13 @@ public class GameController {
     public @ResponseBody Game makeGuess(@PathVariable String id,
                                         @RequestParam(value="letter") String letter) {
 
-        Game game = gameService.getGame(id);
+        Game game = gameService.select(id);
 
         if (game.getGameState() == GameState.ACTIVE) {
             // In case the player type more than one character, take the first one
             String singleLetter = String.valueOf(letter.charAt(0));
 
-            gameService.updateGame(game, singleLetter);
+            gameService.update(game, singleLetter);
         }
         return game;
     }

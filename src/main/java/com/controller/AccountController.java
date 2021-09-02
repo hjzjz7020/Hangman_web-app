@@ -39,7 +39,7 @@ public class AccountController {
     @RequestMapping("/savePlayer")
     public void savePlayer(Account player, HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("representation layer: save a player.");
-        accountService.saveAccount(player);
+        accountService.insert(player);
         response.sendRedirect(request.getContextPath()+"/account/findAll");
     }
 
