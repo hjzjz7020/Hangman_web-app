@@ -32,7 +32,7 @@ $(function() {
 	function resumeGame () {
 		$.ajax({
 			url : evalTempl('game/{id}', {id: gameIdInputBox.val()}),
-			type: 'POST'
+			type: 'GET'
 		}).done(function (game) {
 			currentGame = game;
 			renderGame(game);
